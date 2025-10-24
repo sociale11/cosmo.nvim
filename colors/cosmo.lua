@@ -1,1 +1,2 @@
-require("cosmo").colorscheme() 
+require("cosmo").colorscheme()
+

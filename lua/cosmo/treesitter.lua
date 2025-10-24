@@ -104,8 +104,9 @@ function M.apply()
     ["@attribute"] = { fg = p.green },                  -- #98c379
     ["@decorator"] = { fg = p.blue },                   -- #61afef
 
-    -- Tags (HTML/XML)
-    ["@tag"] = { fg = p.red },                          -- #e06c75
+    -- Tags (HTML/XML/JSX)
+    ["@tag"] = { fg = p.teal },                         -- #56b6c2 (JSX components: <MyComponent/>)
+    ["@tag.builtin"] = { fg = p.red },                  -- #e06c75 (HTML elements: <div/>)
     ["@tag.attribute"] = { fg = p.green },              -- #98c379
     ["@tag.delimiter"] = { fg = p.fg1 },                -- #abb2bf
 
@@ -153,6 +154,66 @@ function M.apply()
   set("@variable.builtin.python", { fg = p.red })          -- #e06c75
   set("@function.builtin.javascript", { fg = p.green })    -- #98c379
   set("@variable.builtin.javascript", { fg = p.red })      -- #e06c75
+
+  -- LSP Semantic Token Highlights (for better accuracy matching VSCode)
+  -- These provide more precise syntax highlighting when LSP is available
+  local lsp_highlights = {
+    -- Variables & Parameters
+    ["@lsp.type.variable"] = { fg = p.fg1 },                    -- #abb2bf
+    ["@lsp.type.parameter"] = { fg = p.orange, italic = true }, -- #d19a66
+    ["@lsp.type.property"] = { fg = p.fg1 },                    -- #abb2bf
+    ["@lsp.type.variable.readonly"] = { fg = p.blue },          -- #61afef
+    ["@lsp.type.variable.defaultLibrary"] = { fg = p.red },     -- #e06c75
+
+    -- Functions & Methods
+    ["@lsp.type.function"] = { fg = p.green },                  -- #98c379
+    ["@lsp.type.method"] = { fg = p.green },                    -- #98c379
+    ["@lsp.type.function.defaultLibrary"] = { fg = p.green },   -- #98c379
+    ["@lsp.type.method.defaultLibrary"] = { fg = p.green },     -- #98c379
+
+    -- Types & Classes
+    ["@lsp.type.class"] = { fg = p.blue },                      -- #61afef
+    ["@lsp.type.type"] = { fg = p.teal },                       -- #56b6c2
+    ["@lsp.type.interface"] = { fg = p.blue },                  -- #61afef
+    ["@lsp.type.enum"] = { fg = p.blue },                       -- #61afef
+    ["@lsp.type.enumMember"] = { fg = p.teal },                 -- #56b6c2
+    ["@lsp.type.typeParameter"] = { fg = p.blue },              -- #61afef
+    ["@lsp.type.namespace"] = { fg = p.blue },                  -- #61afef
+    ["@lsp.type.struct"] = { fg = p.blue },                     -- #61afef
+
+    -- Keywords & Operators
+    ["@lsp.type.keyword"] = { fg = p.red },                     -- #e06c75
+    ["@lsp.type.operator"] = { fg = p.red },                    -- #e06c75
+
+    -- Other semantic tokens
+    ["@lsp.type.macro"] = { fg = p.red },                       -- #e06c75
+    ["@lsp.type.decorator"] = { fg = p.blue },                  -- #61afef
+    ["@lsp.type.comment"] = { fg = p.comment, italic = true },  -- #676f7d
+    ["@lsp.type.string"] = { fg = p.yellow },                   -- #e5c07b
+    ["@lsp.type.number"] = { fg = p.purple },                   -- #c678dd
+
+    -- Modifiers
+    ["@lsp.mod.readonly"] = { fg = p.blue },                    -- #61afef
+    ["@lsp.mod.constant"] = { fg = p.teal },                    -- #56b6c2
+    ["@lsp.mod.defaultLibrary"] = {},                           -- inherit
+    ["@lsp.mod.declaration"] = {},                              -- inherit
+    ["@lsp.mod.definition"] = {},                               -- inherit
+
+    -- Type modifiers
+    ["@lsp.typemod.variable.readonly"] = { fg = p.blue },       -- #61afef
+    ["@lsp.typemod.variable.constant"] = { fg = p.blue },       -- #61afef
+    ["@lsp.typemod.variable.defaultLibrary"] = { fg = p.red },  -- #e06c75
+    ["@lsp.typemod.variable.global"] = { fg = p.blue },         -- #61afef
+    ["@lsp.typemod.property.readonly"] = { fg = p.blue },       -- #61afef
+    ["@lsp.typemod.function.readonly"] = { fg = p.green },      -- #98c379
+    ["@lsp.typemod.method.readonly"] = { fg = p.green },        -- #98c379
+    ["@lsp.typemod.class.defaultLibrary"] = { fg = p.blue },    -- #61afef
+    ["@lsp.typemod.type.defaultLibrary"] = { fg = p.teal },     -- #56b6c2
+  }
+
+  for group, spec in pairs(lsp_highlights) do
+    set(group, spec)
+  end
 end
 
 return M
