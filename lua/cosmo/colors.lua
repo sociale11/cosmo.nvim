@@ -6,7 +6,7 @@ M.palette = {
 	-- Base shades (from Cosmo VSCode theme)
 	bg0 = "#0F131A", -- sidebar/activity bar background
 	bg1 = "#1B212E", -- editor background
-	bg2 = "#2a2f38", -- line highlight
+	bg2 = "#585b70", -- line highlight
 	bg3 = "#21252B", -- status bar, widget background
 	bg4 = "#3E4451", -- selection background
 
@@ -170,4 +170,3 @@ function M.apply()
 end
 
 return M
-
