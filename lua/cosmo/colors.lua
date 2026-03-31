@@ -68,7 +68,7 @@ function M.apply()
 	set("NonText", { fg = p.bg2 })
 
 	set("Cursor", { fg = p.bg1, bg = p.fg0 })
-	set("CursorLine", { bg = p.bg2 })
+	set("CursorLine", { bg = p.bg1 })
 	set("CursorColumn", { bg = p.bg2 })
 	set("CursorLineNr", { fg = p.amber })
 	set("LineNr", { fg = p.fg3 })
